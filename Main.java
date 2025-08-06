@@ -1,8 +1,8 @@
-import server.RedisServer;
+import server.FastDBServer;
 
 public class Main {
     public static void main(String[] args) {
-        RedisServer server = new RedisServer("127.0.0.1", 6379);
+        FastDBServer server = new FastDBServer("127.0.0.1", 6379);
         server.start();
     }
 }
