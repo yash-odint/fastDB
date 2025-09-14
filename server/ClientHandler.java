@@ -11,6 +11,7 @@ import java.net.Socket;
 import command.CommandHandler;
 import command.SetCommand;
 import command.GetCommand;
+import command.DelCommand;
 
 import java.util.Map;
 import java.util.ArrayList;
@@ -32,6 +33,7 @@ public class ClientHandler implements Runnable{
     private void registerCommands(){
         commandRegistry.put("SET", new SetCommand());
         commandRegistry.put("GET", new GetCommand());
+        commandRegistry.put("DEL", new DelCommand());
         commandRegistry.put("COMMAND", args -> "+OK\r\n");
     }
 
@@ -91,7 +93,7 @@ public class ClientHandler implements Runnable{
                 writer.flush();
             }
         } catch (Exception e){
-            System.out.println(e);
+            System.out.println("Error in Client Handler file : "  + e);
         }
     }
     
