@@ -11,7 +11,9 @@ public class GetCommand implements CommandHandler{
         }
 
         String key = args.get(0);
+        DataStore.getInstance().purgeIfExpired(key);
         String value = DataStore.getInstance().get(key);
+
 
         if (value == null) {
             return "$-1\r\n";

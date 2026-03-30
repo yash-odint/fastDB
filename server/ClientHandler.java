@@ -12,6 +12,7 @@ import command.CommandHandler;
 import command.SetCommand;
 import command.GetCommand;
 import command.DelCommand;
+import command.ExpireCommand;
 
 import java.util.Map;
 import java.util.ArrayList;
@@ -34,6 +35,8 @@ public class ClientHandler implements Runnable{
         commandRegistry.put("SET", new SetCommand());
         commandRegistry.put("GET", new GetCommand());
         commandRegistry.put("DEL", new DelCommand());
+        commandRegistry.put("EXPIRE", new ExpireCommand());
+
         commandRegistry.put("COMMAND", args -> "+OK\r\n");
     }
 
@@ -88,6 +91,8 @@ public class ClientHandler implements Runnable{
                 logger.info(command + " " + args.toString());
 
                 String response = executeCommand(command, args);
+
+                logger.info(response);
 
                 writer.write(response);
                 writer.flush();
